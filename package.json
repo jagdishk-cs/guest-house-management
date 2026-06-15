@@ -1,0 +1,16 @@
+{
+  "name": "guest-house-management",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Guest House & Bachelor Room Management — shareable web app",
+  "scripts": {
+    "install:all": "npm install --prefix backend --strict-ssl=false && npm install --prefix frontend --strict-ssl=false",
+    "build": "npm run build --prefix frontend",
+    "share": "powershell -ExecutionPolicy Bypass -File scripts/share.ps1",
+    "run": "powershell -ExecutionPolicy Bypass -File scripts/run.ps1",
+    "dev": "powershell -ExecutionPolicy Bypass -File scripts/dev.ps1",
+    "start": "powershell -ExecutionPolicy Bypass -File scripts/run.ps1",
+    "dev:backend": "npm run dev --prefix backend",
+    "dev:frontend": "npm run dev --prefix frontend"
+  }
+}

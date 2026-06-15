@@ -1,0 +1,15 @@
+# Optional: run MongoDB locally for development
+# Usage: docker compose up -d
+# Then: cd backend && npm run seed && npm run dev
+
+services:
+  mongodb:
+    image: mongo:7
+    container_name: guest-house-mongo
+    ports:
+      - '27017:27017'
+    volumes:
+      - guest_house_mongo_data:/data/db
+
+volumes:
+  guest_house_mongo_data:

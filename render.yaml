@@ -1,0 +1,24 @@
+# Deploy to Render.com (free tier) — https://render.com
+# 1. Push repo to GitHub
+# 2. Render → New → Blueprint → connect repo
+# 3. Set MONGODB_URI + JWT_SECRET in dashboard (from Atlas)
+
+services:
+  - type: web
+    name: guest-house-app
+    runtime: node
+    plan: free
+    buildCommand: npm install --prefix frontend --strict-ssl=false && npm run build --prefix frontend && npm install --prefix backend --omit=dev --strict-ssl=false
+    startCommand: cd backend && NODE_ENV=production SERVE_FRONTEND=true node server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: SERVE_FRONTEND
+        value: true
+      - key: AUTO_SEED_ON_EMPTY
+        value: true
+      - key: MONGODB_URI
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+    healthCheckPath: /api/health
